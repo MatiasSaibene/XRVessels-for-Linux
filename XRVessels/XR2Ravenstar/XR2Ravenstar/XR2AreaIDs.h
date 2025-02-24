@@ -28,7 +28,7 @@
 
 #pragma once
 
-#include "AreaIDs.h"   // XR1 areas
+#include "..//..//DeltaGliderXR1//XR1Lib//AreaIDs.h"    // XR1 areas
 
 // main panel
 #define AID_XR2_WARNING_LIGHTS  2000

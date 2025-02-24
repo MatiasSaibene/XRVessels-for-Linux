@@ -26,8 +26,7 @@
 // Custom instrument panels for the XR5
 // ==============================================================
 
-#include "OrbiterSDK.h"
-#include "resource.h"
+#include "Orbitersdk.h"
 #include "XR5AreaIDs.h"
 
 #include "XR5InstrumentPanels.h"
@@ -50,7 +49,6 @@
 #include "XR5Areas.h"
 #include "XR5Components.h"
 #include "XR5PayloadScreenAreas.h"
-
 // 2D cockpit coordinates for the eyepoint
 static const VECTOR3 twoDCockpitCoordinates = _V(0, 5.842, 22.371);
 
@@ -75,7 +73,7 @@ static const VECTOR3 twoDCockpitCoordinates = _V(0, 5.842, 22.371);
 // vessel = our parent vessel
 // panelID = unique panel ID
 // panelResourceID = resource ID of this panel in our DLL; e.g., IDB_PANEL1_1280.  -1 = NONE
-XR5InstrumentPanel::XR5InstrumentPanel(XR5Vanguard &vessel, const int panelID, const WORD panelResourceID) :
+XR5InstrumentPanel::XR5InstrumentPanel(XR5Vanguard &vessel, const int panelID, const char *panelResourceID) :
     InstrumentPanel(vessel, panelID, -1, panelResourceID)
 {
 }
@@ -108,10 +106,10 @@ void XR5InstrumentPanel::InitMDA(MultiDisplayArea *pMDA)
 // Returns: true on success, false on error (e.g., a bitmap failed to load)
 bool XR5MainInstrumentPanel::Activate() 
 {
-    const WORD panelResourceID = GetPanelResourceID();
+    const char *panelResourceID = GetPanelResourceID();
     
     // load our bitmap
-    m_hBmp = LoadBitmap(GetVessel().GetModuleHandle(), MAKEINTRESOURCE (panelResourceID));
+    m_hBmp = oapiLoadTexture(panelResourceID);
     if (m_hBmp == nullptr)
         return false;       // should never happen
 
@@ -151,10 +149,10 @@ void XR5MainInstrumentPanel::Deactivate()
 // Returns: true on success, false on error (e.g., a bitmap failed to load)
 bool XR5PayloadInstrumentPanel::Activate()
 {
-    const WORD panelResourceID = GetPanelResourceID();
+    const char *panelResourceID = GetPanelResourceID();
     
     // load our bitmap
-    m_hBmp = LoadBitmap(GetVessel().GetModuleHandle(), MAKEINTRESOURCE (panelResourceID));
+    m_hBmp = oapiLoadTexture(panelResourceID);
     if (m_hBmp == nullptr)
         return false;       // should never happen
     
@@ -227,10 +225,10 @@ void XR5PayloadInstrumentPanel::AddCommonAreas()
 // Returns: true on success, false on error (e.g., a bitmap failed to load)
 bool XR5OverheadInstrumentPanel::Activate()
 {
-    const WORD panelResourceID = GetPanelResourceID();
+    const char *panelResourceID = GetPanelResourceID();
     
     // load our bitmap
-    m_hBmp = LoadBitmap(GetVessel().GetModuleHandle(), MAKEINTRESOURCE (panelResourceID));
+    m_hBmp = oapiLoadTexture(panelResourceID);
     if (m_hBmp == nullptr)
         return false;       // should never happen
     
@@ -358,10 +356,10 @@ void XR5UpperInstrumentPanel::AddCommonAreas(const int width)
 // Returns: true on success, false on error (e.g., a bitmap failed to load)
 bool XR5UpperInstrumentPanel::Activate()
 {
-    const WORD panelResourceID = GetPanelResourceID();
+    const char *panelResourceID = GetPanelResourceID();
     
     // load our bitmap
-    m_hBmp = LoadBitmap(GetVessel().GetModuleHandle(), MAKEINTRESOURCE (panelResourceID));
+    m_hBmp = oapiLoadTexture(panelResourceID);
     if (m_hBmp == nullptr)
         return false;       // should never happen
     
@@ -385,10 +383,10 @@ bool XR5UpperInstrumentPanel::Activate()
 // Returns: true on success, false on error (e.g., a bitmap failed to load)
 bool XR5LowerInstrumentPanel::Activate()
 {
-    const WORD panelResourceID = GetPanelResourceID();
+    const char *panelResourceID = GetPanelResourceID();
     
     // load our bitmap
-    m_hBmp = LoadBitmap(GetVessel().GetModuleHandle(), MAKEINTRESOURCE (panelResourceID));
+    m_hBmp = oapiLoadTexture(panelResourceID);
     if (m_hBmp == nullptr)
         return false;       // should never happen
 

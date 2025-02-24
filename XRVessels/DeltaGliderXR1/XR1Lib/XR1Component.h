@@ -29,10 +29,10 @@
 
 #pragma once
 
-#include "Orbitersdk.h"
-#include "vessel3ext.h"
+#include "..//..//..//..//include//Orbitersdk.h"
+#include "..//..//framework//framework//Vessel3Ext.h"
 #include "DeltaGliderXR1.h"
-#include "Component.h"
+#include "..//..//framework//framework//Component.h"
 
 class XR1Component : public Component
 {

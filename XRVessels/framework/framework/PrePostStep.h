@@ -27,8 +27,8 @@
 
 #pragma once
 
-#include "Orbitersdk.h"
-#include "vessel3ext.h"
+#include "..//..//..//..//include//Orbitersdk.h"
+#include "Vessel3Ext.h"
 
 // A prestep or a poststep class
 class PrePostStep

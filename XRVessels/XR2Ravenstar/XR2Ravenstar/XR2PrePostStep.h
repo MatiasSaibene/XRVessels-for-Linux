@@ -28,9 +28,9 @@
 
 #pragma once
 
-#include "PrePostStep.h"
+#include "..//..//framework//framework//PrePostStep.h"
 #include "XR2Ravenstar.h"
-#include "XR1PrePostStep.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1PrePostStep.h"
 
 class XR2PrePostStep : public XR1PrePostStep
 {

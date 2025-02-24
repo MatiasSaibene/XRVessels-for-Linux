@@ -26,30 +26,30 @@
 // Custom instrument panels for the XR2
 // ==============================================================
 
-#include "OrbiterSDK.h"
-#include "resource.h"
+#include "..//..//..//..//include//Orbitersdk.h"
 #include "XR2AreaIDs.h"
 
 #include "XR2InstrumentPanels.h"
 
-#include "XR1MainPanelAreas.h"
-#include "XR1UpperPanelAreas.h"
-#include "XR1LowerPanelAreas.h"
-#include "XR1VCPanelAreas.h"
-#include "XR1HUD.h"
-#include "XR1AngularDataComponent.h"
-#include "XR1MFDComponent.h"
-#include "XR1ThrottleQuadrantComponents.h"
-#include "XR1MainPanelComponents.h"
-#include "XR1FuelDisplayComponent.h"
-#include "XR1EngineDisplayComponent.h"
-#include "XR1MultiDisplayArea.h"
-#include "XR1UpperPanelComponents.h"
-#include "XR1LowerPanelComponents.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1MainPanelAreas.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1UpperPanelAreas.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1LowerPanelAreas.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1VCPanelAreas.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1HUD.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1AngularDataComponent.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1MFDComponent.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1ThrottleQuadrantComponents.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1MainPanelComponents.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1FuelDisplayComponent.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1EngineDisplayComponent.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1MultiDisplayArea.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1UpperPanelComponents.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1LowerPanelComponents.h"
 
 #include "XR2Areas.h"
 #include "XR2Components.h"
 #include "XR2PayloadScreenAreas.h"
+#include <cassert>
 
 // 2D cockpit coordinates for the eyepoint
 static const VECTOR3 twoDCockpitCoordinates = _V(0, 1.946, 7.27);   // save as VC pilot view except that X == 0
@@ -75,15 +75,15 @@ static const VECTOR3 twoDCockpitCoordinates = _V(0, 1.946, 7.27);   // save as V
 // vessel = our parent vessel
 // panelID = unique panel ID
 // panelResourceID = resource ID of this panel in our DLL; e.g., IDB_PANEL1_1280.  -1 = NONE
-XR2InstrumentPanel::XR2InstrumentPanel(XR2Ravenstar &vessel, const int panelID, const WORD panelResourceID, const bool force3DRedrawTo2D) :
+XR2InstrumentPanel::XR2InstrumentPanel(XR2Ravenstar &vessel, const int panelID, const char *panelResourceID, const bool force3DRedrawTo2D) :
     InstrumentPanel(vessel, panelID, (panelID - VC_PANEL_ID_BASE), panelResourceID, force3DRedrawTo2D)  // Orbiter VC panel ID is a delta from our globally unique panel ID)  
 {
 #ifdef _DEBUG
     const unsigned short NO_ID = (unsigned short)-1;
     if (IsVC())
-        _ASSERTE(panelResourceID == NO_ID);
+        assert(panelResourceID == NO_ID);
     else  // this is 2D panel, so panelResourceID should be valid
-        _ASSERTE(panelResourceID != NO_ID);
+        assert(panelResourceID != NO_ID);
 #endif
 }
 
@@ -115,10 +115,10 @@ void XR2InstrumentPanel::InitMDA(MultiDisplayArea *pMDA)
 // Returns: true on success, false on error (e.g., a bitmap failed to load)
 bool XR2MainInstrumentPanel::Activate() 
 {
-    const WORD panelResourceID = GetPanelResourceID();
+    const char *panelResourceID = GetPanelResourceID();
     
     // load our bitmap
-    m_hBmp = LoadBitmap(GetVessel().GetModuleHandle(), MAKEINTRESOURCE (panelResourceID));
+    m_hBmp = oapiLoadTexture(panelResourceID);
     if (m_hBmp == nullptr)
         return false;       // should never happen
 
@@ -158,10 +158,10 @@ void XR2MainInstrumentPanel::Deactivate()
 // Returns: true on success, false on error (e.g., a bitmap failed to load)
 bool XR2PayloadInstrumentPanel::Activate()
 {
-    const WORD panelResourceID = GetPanelResourceID();
+    const char *panelResourceID = GetPanelResourceID();
 
     // load our bitmap
-    m_hBmp = LoadBitmap(GetVessel().GetModuleHandle(), MAKEINTRESOURCE (panelResourceID));
+    m_hBmp = oapiLoadTexture(panelResourceID);
     if (m_hBmp == nullptr)
         return false;       // should never happen
     
@@ -311,10 +311,10 @@ void XR2UpperInstrumentPanel::AddCommonAreas(const int width)
 // Returns: true on success, false on error (e.g., a bitmap failed to load)
 bool XR2UpperInstrumentPanel::Activate()
 {
-    const WORD panelResourceID = GetPanelResourceID();
+    const char *panelResourceID = GetPanelResourceID();
     
     // load our bitmap
-    m_hBmp = LoadBitmap(GetVessel().GetModuleHandle(), MAKEINTRESOURCE (panelResourceID));
+    m_hBmp = oapiLoadTexture(panelResourceID);
     if (m_hBmp == nullptr)
         return false;       // should never happen
     
@@ -338,10 +338,11 @@ bool XR2UpperInstrumentPanel::Activate()
 // Returns: true on success, false on error (e.g., a bitmap failed to load)
 bool XR2LowerInstrumentPanel::Activate()
 {
-    const WORD panelResourceID = GetPanelResourceID();
+    const char *panelResourceID = GetPanelResourceID();
     
     // load our bitmap
-    m_hBmp = LoadBitmap(GetVessel().GetModuleHandle(), MAKEINTRESOURCE (panelResourceID));
+//    assert(false);
+    m_hBmp = oapiLoadTexture(panelResourceID); //FIXME
     if (m_hBmp == nullptr)
         return false;       // should never happen
 

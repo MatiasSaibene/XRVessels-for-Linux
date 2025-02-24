@@ -29,7 +29,8 @@
 
 #pragma once
 
-#include "orbitersdk.h"
+#include "..//..//..//..//include//Orbitersdk.h"
+#include "XR1Areas.h"
 #include "XR1Component.h"
 
 class MainThrottleComponent : public XR1Component

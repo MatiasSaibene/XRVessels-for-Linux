@@ -40,7 +40,7 @@
 DeltaGliderXR1::DeltaGliderXR1 (OBJHANDLE hObj, int fmodel, XR1ConfigFileParser *pConfigFileParser) : 
     VESSEL3_EXT(hObj, fmodel),
     m_secondaryHUDMode(3), m_preStepPreviousAirspeed(0), m_preStepPreviousGearFullyUncompressedAltitude(-1), m_airborneTargetTime(0), 
-    m_takeoffTime(0), m_touchdownTime(0), m_preStepPreviousVerticalSpeed(0), m_forceWarning(false), m_accScale(AccScale::NONE), m_maxGaugeAcc(0),
+    m_takeoffTime(0), m_touchdownTime(0), m_preStepPreviousVerticalSpeed(0), m_forceWarning(false), m_accScale(AccScale::NONE), m_maxGaugeAcc(2.0),
     m_isCrashed(false),
     m_noseconeTemp(0), m_leftWingTemp(0), m_rightWingTemp(0), m_cockpitTemp(0), m_topHullTemp(0),
     m_activeMultiDisplayMode(DEFAULT_MMID), m_activeTempScale(TempScale::Celsius), m_pMDA(nullptr),
@@ -120,7 +120,7 @@ DeltaGliderXR1::DeltaGliderXR1 (OBJHANDLE hObj, int fmodel, XR1ConfigFileParser 
         m_hoverEngineIntegrity[i] = 1.0;    // default to no damage
 
     // SPECIAL CASE: track RCS damage separately
-    for (int i=0; i < sizeof(m_rcsIntegrityArray) / sizeof(double); i++)
+    for (size_t i=0; i < sizeof(m_rcsIntegrityArray) / sizeof(double); i++)
         m_rcsIntegrityArray[i] = 1.0;       // default to no damage
 
     // new vars for the XR1
@@ -132,7 +132,7 @@ DeltaGliderXR1::DeltaGliderXR1 (OBJHANDLE hObj, int fmodel, XR1ConfigFileParser 
     *m_hudWarningText = 0;
 
     // always initalize these variables
-    m_pXRSoundPath = "XRSound\\Default";        // installed by XRSound
+    m_pXRSoundPath = "XRSound/Default";        // installed by XRSound
 
     // these animation handles are not used by the XR1
     anim_fuelhatch = 0;
@@ -235,7 +235,7 @@ DeltaGliderXR1::~DeltaGliderXR1 ()
     // possible that this vessel is being destroyed with the dialog open and the sim is still running,
     // but that is relatively unlikely and even if it happens, all that would happen is that toggling
     // the dialog again would send a OPEN command the first time instead of a close.
-    s_hPayloadEditorDialog = 0;
+    //s_hPayloadEditorDialog = 0;
 
     delete m_pFuelDumpParticleStreamSpec;
     delete m_pBoilOffExhaustParticleStreamSpec;

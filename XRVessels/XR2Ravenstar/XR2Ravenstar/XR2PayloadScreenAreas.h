@@ -28,7 +28,7 @@
 
 #pragma once
 
-#include "XR1PayloadScreenAreas.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1PayloadScreenAreas.h"
 #include "XR2Areas.h"
 
 //----------------------------------------------------------------------------------

@@ -29,9 +29,9 @@
 
 #pragma once
 
-#include "Orbitersdk.h"
-#include "vessel3ext.h"
-#include "Area.h"
+#include "..//..//..//..//include//Orbitersdk.h"
+#include "..//..//framework//framework//Vessel3Ext.h"
+#include "..//..//framework//framework//Area.h"
 #include "XR1Areas.h"
 
 //----------------------------------------------------------------------------------

@@ -29,7 +29,7 @@
 #pragma once
 
 #include "XR2Ravenstar.h"
-#include "XR1PayloadBay.h"  // cannot use forward reference here!  Otherwise inline code using XR2Ravenstar object is generated incorrectly.
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1PayloadBay.h"  // cannot use forward reference here!  Otherwise inline code using XR2Ravenstar object is generated incorrectly.
 
 class XR2PayloadBay : public XR1PayloadBay 
 {

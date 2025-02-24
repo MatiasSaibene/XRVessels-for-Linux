@@ -30,9 +30,9 @@
 #include <stdio.h>
 #include <math.h>
 
-#include "Component.h"  
-#include "Area.h"  
-#include "AreaIDs.h"
+#include "..//..//framework//framework//Component.h"  
+#include "..//..//framework//framework//Area.h"  
+#include "..//..//DeltaGliderXR1//XR1Lib//AreaIDs.h"
 #include "meshres.h"
 
 // --------------------------------------------------------------
@@ -82,8 +82,8 @@ void XR2Ravenstar::SetPassengerVisuals()
     }
 
 #define SizeOfGrp(g) (sizeof(g) / sizeof(int))
-    const UINT commanderGrp[] = { GRP_lee, GRP_lee_fixup_1, GRP_lee_fixup_2 };
-    const UINT pilotGrp[] = { GRP_kara, GRP_kara_fixup_1, GRP_kara_fixup_2 };
+    const unsigned int commanderGrp[] = { GRP_lee, GRP_lee_fixup_1, GRP_lee_fixup_2 };
+    const unsigned int pilotGrp[] = { GRP_kara, GRP_kara_fixup_1, GRP_kara_fixup_2 };
 
     SetMeshGroupsVisibility(commanderOnBoard, exmesh, SizeOfGrp(commanderGrp), commanderGrp);
     SetMeshGroupsVisibility(pilotOnBoard, exmesh, SizeOfGrp(pilotGrp), pilotGrp);

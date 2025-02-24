@@ -36,7 +36,7 @@
 // ==============================================================
 
 #include "XR2ConfigFileParser.h"
-#include "ConfigFileParserMacros.h"
+#include "../../framework/framework/ConfigFileParserMacros.h"
 #include "XR2Ravenstar.h"
 #include "XR2Globals.h"
 

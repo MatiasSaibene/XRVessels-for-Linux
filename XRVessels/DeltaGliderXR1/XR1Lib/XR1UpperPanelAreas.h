@@ -29,9 +29,9 @@
 
 #pragma once
 
-#include "Orbitersdk.h"
-#include "vessel3ext.h"
-#include "Area.h"
+#include "..//..//..//..//include//Orbitersdk.h"
+#include "..//..//framework//framework//Vessel3Ext.h"
+#include "..//..//framework//framework//Area.h"
 #include "XR1Areas.h"
 
 //----------------------------------------------------------------------------------
@@ -204,8 +204,8 @@ public:
 
 protected:
     // data
-    HPEN m_pen0;
-    HPEN m_pen1;
+    oapi::Pen *m_pen0;
+    oapi::Pen *m_pen1;
 };
 
 //----------------------------------------------------------------------------------
@@ -269,8 +269,8 @@ public:
     virtual bool ProcessMouseEvent(const int event, const int mx, const int my);
 
 protected:
-    HFONT m_font;
-    HFONT m_numberFont;
+    oapi::Font *m_font;
+    oapi::Font *m_numberFont;
     COORD2 m_evaButtonCoord;
     COORD2 m_prevArrowCoord;
     COORD2 m_nextArrowCoord;

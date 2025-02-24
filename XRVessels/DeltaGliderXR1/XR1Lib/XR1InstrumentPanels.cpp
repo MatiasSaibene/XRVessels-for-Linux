@@ -27,8 +27,7 @@
 // Instrument panels for the DG-XR1.
 // ==============================================================
 
-#include "OrbiterSDK.h"
-#include "resource.h"
+#include "Orbitersdk.h"
 #include "AreaIDs.h"
 
 #include "XR1InstrumentPanels.h"
@@ -46,7 +45,7 @@
 #include "XR1MultiDisplayArea.h"
 #include "XR1UpperPanelComponents.h"
 #include "XR1LowerPanelComponents.h"
-
+#include "Bitmaps.h"
 // 2D cockpit coordinates
 static const VECTOR3 twoDCockpktCoordinates = _V(0, 1.467, 6.782);
 
@@ -58,7 +57,7 @@ static const VECTOR3 twoDCockpktCoordinates = _V(0, 1.467, 6.782);
 // vessel = our parent vessel
 // panelID = unique panel ID
 // panelResourceID = resource ID of this panel in our DLL; e.g., IDB_PANEL1_1280.  -1 = NONE
-XR1InstrumentPanel::XR1InstrumentPanel(DeltaGliderXR1 &vessel, const int panelID, const WORD panelResourceID) :
+XR1InstrumentPanel::XR1InstrumentPanel(DeltaGliderXR1 &vessel, const int panelID, const char *panelResourceID) :
     InstrumentPanel(vessel, panelID, (panelID - VC_PANEL_ID_BASE), panelResourceID)  // Orbiter VC panel ID is a delta from our globally unique panel ID
 {
 }
@@ -91,10 +90,10 @@ void XR1InstrumentPanel::InitMDA(MultiDisplayArea *pMDA)
 // Returns: true on success, false on error (e.g., a bitmap failed to load)
 bool XR1MainInstrumentPanel::Activate() 
 {
-    const WORD panelResourceID = GetPanelResourceID();
+    const char *panelResourceID = GetPanelResourceID();
 
     // load our bitmap
-    m_hBmp = LoadBitmap(GetVessel().GetModuleHandle(), MAKEINTRESOURCE (panelResourceID));
+    m_hBmp = oapiLoadTexture(panelResourceID);
     if (m_hBmp == nullptr)
         return false;       // should never happen
 
@@ -134,10 +133,10 @@ void XR1MainInstrumentPanel::Deactivate()
 // Returns: true on success, false on error (e.g., a bitmap failed to load)
 bool XR1UpperInstrumentPanel::Activate()
 {
-    const WORD panelResourceID = GetPanelResourceID();
+    const char *panelResourceID = GetPanelResourceID();
 
     // load our bitmap
-    m_hBmp = LoadBitmap(GetVessel().GetModuleHandle(), MAKEINTRESOURCE (panelResourceID));
+    m_hBmp = oapiLoadTexture(panelResourceID);
     if (m_hBmp == nullptr)
         return false;       // should never happen
     
@@ -161,10 +160,10 @@ bool XR1UpperInstrumentPanel::Activate()
 // Returns: true on success, false on error (e.g., a bitmap failed to load)
 bool XR1LowerInstrumentPanel::Activate()
 {
-    const WORD panelResourceID = GetPanelResourceID();
+    const char *panelResourceID = GetPanelResourceID();
     
     // load our bitmap
-    m_hBmp = LoadBitmap(GetVessel().GetModuleHandle(), MAKEINTRESOURCE (panelResourceID));
+    m_hBmp = oapiLoadTexture(panelResourceID);
     if (m_hBmp == nullptr)
         return false;       // should never happen
 

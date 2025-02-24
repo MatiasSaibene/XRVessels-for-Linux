@@ -28,10 +28,10 @@
 
 #pragma once
 
-#include "orbitersdk.h"
-#include "XR1Component.h"
+#include "..//..//..//..//include//Orbitersdk.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1Component.h"
 #include "XR2Areas.h"
-#include "XR1MultiDisplayArea.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1MultiDisplayArea.h"
 
 // 
 // Components

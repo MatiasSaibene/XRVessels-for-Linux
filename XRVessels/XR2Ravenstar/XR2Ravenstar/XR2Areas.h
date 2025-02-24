@@ -28,10 +28,11 @@
 
 #pragma once
 
-#include "orbitersdk.h"
-#include "XR1Areas.h"
-#include "XR1UpperPanelAreas.h"
-#include "XR1MultiDisplayArea.h"
+#include "..//..//..//..//include//Orbitersdk.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1Areas.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1UpperPanelAreas.h"
+
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1MultiDisplayArea.h"
 
 class XR2Ravenstar;
 

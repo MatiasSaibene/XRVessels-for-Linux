@@ -30,7 +30,7 @@
 
 #include "XR2Ravenstar.h"
 #include "XR2PrePostStep.h"
-#include "XR1PostSteps.h"
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1PostSteps.h"
 
 //---------------------------------------------------------------------------
 

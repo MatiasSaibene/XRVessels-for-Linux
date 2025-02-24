@@ -31,7 +31,7 @@
 
 #include "DeltaGliderXR1.h"
 #include "XR1PrePostStep.h"
-#include "RollingArray.h"
+#include "..//..//framework//framework//RollingArray.h"
 
 //---------------------------------------------------------------------------
 

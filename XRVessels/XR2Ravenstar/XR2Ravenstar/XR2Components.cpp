@@ -26,11 +26,10 @@
 // Custom XR2 components.
 // ==============================================================
 
-#include "orbitersdk.h"
-#include "resource.h"
+#include "..//..//..//..//include//Orbitersdk.h"
 #include "XR2Ravenstar.h"
 
-#include "XR1MainPanelAreas.h"  
+#include "..//..//DeltaGliderXR1//XR1Lib//XR1MainPanelAreas.h"  
 #include "XR2AreaIDs.h"
 #include "XR2InstrumentPanels.h"
 #include "XR2Areas.h"
